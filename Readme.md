@@ -4,3 +4,6 @@
 ### Banco de dados
 * https://ibb.co/y4gZ3R4
 
+### Figma
+* https://www.figma.com/file/6M8Pq62vm6QYPqTsYJBCmf/Ui---B7Delivery?node-id=0%3A1
+
