@@ -2,6 +2,7 @@ import {SearchInput} from "../../components/SearchInput";
 
 import styles from '../../styles/Home.module.css'
 import {Banner} from "../../components/Banner";
+import {ProductItem} from "../../components/ProductItem";
 
 const Home = () =>{
 
@@ -40,6 +41,44 @@ const Home = () =>{
             </header>
 
             <Banner/>
+
+            <div className={styles.grid}>
+                <ProductItem
+                    data={{id:1, image:'/temp/burger.png', categoryName:'Tradicional', name:'Texas Burger', price:'R$ 25,50'}}
+                    mainColor="#FB9400"
+                    secondColor="#CCC"
+                />
+                <ProductItem
+                    data={{id:2 ,image:'/temp/burger.png', categoryName:'Tradicional', name:'Texas Burger', price:'R$ 25,50'}}
+                    mainColor="#FB9400"
+                    secondColor="#CCC"
+                />
+                <ProductItem
+                    data={{id:3, image:'/temp/burger.png', categoryName:'Tradicional', name:'Texas Burger', price:'R$ 25,50'}}
+                    mainColor="#FB9400"
+                    secondColor="#CCC"
+                />
+                <ProductItem
+                    data={{id:4, image:'/temp/burger.png', categoryName:'Tradicional', name:'Texas Burger', price:'R$ 25,50'}}
+                    mainColor="#FB9400"
+                    secondColor="#CCC"
+                />
+                <ProductItem
+                    data={{id:5, image:'/temp/burger.png', categoryName:'Tradicional', name:'Texas Burger', price:'R$ 25,50'}}
+                    mainColor="#FB9400"
+                    secondColor="#CCC"
+                />
+                <ProductItem
+                    data={{id:6, image:'/temp/burger.png', categoryName:'Tradicional', name:'Texas Burger', price:'R$ 25,50'}}
+                    mainColor="#FB9400"
+                    secondColor="#CCC"
+                />
+                <ProductItem
+                    data={{id:7, image:'/temp/burger.png', categoryName:'Tradicional', name:'Texas Burger', price:'R$ 25,50'}}
+                    mainColor="#FB9400"
+                    secondColor="#CCC"
+                />
+            </div>
         </div>
     )
 }

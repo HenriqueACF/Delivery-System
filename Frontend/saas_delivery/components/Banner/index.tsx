@@ -11,14 +11,14 @@ export const Banner = () => {
                 slidesPerView={1}
                 loop={true}
                 autoplay={{
-                    delay:1000,
+                    delay:3000,
                     disableOnInteraction: false
                 }}
                 modules={[Autoplay]}
                 className={styles.swiper}
             >
-                <SwiperSlide className={styles.slide}> <div className={styles.slideImg}>1</div> </SwiperSlide>
-                <SwiperSlide className={styles.slide}> <div className={styles.slideImg}>2</div> </SwiperSlide>
+                <SwiperSlide className={styles.slide}> <div className={styles.slideImg}> <img src='/temp/banner1.png'/> </div> </SwiperSlide>
+                <SwiperSlide className={styles.slide}> <div className={styles.slideImg}> <img src='/temp/banner2.png'/> </div> </SwiperSlide>
             </Swiper>
         </div>
     )
