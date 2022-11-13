@@ -8,11 +8,11 @@ import { GetServerSideProps } from "next";
 
 const Home = (data: Props) =>{
 
-    const api = UseApi()
-    const tenant = api.getTenant('BurgerLanches')
-    if(tenant){
-        // redirect
-    }
+    // const api = UseApi()
+    // const tenant = api.getTenant('BurgerLanches')
+    // if(tenant){
+    //     // redirect
+    // }
 
     //FUNCTIONS
     const handleSearch = (searchValue: string) =>{
