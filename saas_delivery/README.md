@@ -1,8 +1,6 @@
 ### SAAS Delivery
 
     * TODO:
-        * Tela de Cadastro
-        * Tela de Esqueci minha senha
         * Consumo da API
         * Tela de Produto
         * Componente de Quantidade
@@ -13,14 +11,16 @@
         * Utilizar Cookies
         * Tela de Checkout
     *DOING:
-        *  Componentes das telas de login, cadastro e esqueci a senha
-        *  Tela de Login
+        * Tela de Cadastro
+        * Tela de Esqueci minha senha
     *DONE:
         * Tela Cardapio
         * Banner promocional
         * Controle de Tenant
         * Criação do Context
         * Components recebendo Context
+        * Componentes das telas de login, cadastro e esqueci a senha
+        * Tela de Login
 
 ## Getting Started
 
