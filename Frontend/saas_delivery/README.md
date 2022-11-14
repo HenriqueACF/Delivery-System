@@ -13,6 +13,7 @@
         * Utilizar Cookies
         * Tela de Checkout
     *DOING:
+        *  Componentes das telas de login, cadastro e esqueci a senha
         *  Tela de Login
     *DONE:
         * Tela Cardapio

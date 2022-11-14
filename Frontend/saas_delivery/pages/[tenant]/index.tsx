@@ -8,6 +8,7 @@ import { GetServerSideProps } from "next";
 import { Tenant } from "../../types/Tenant";
 import { useAppContext } from "../../contexts/AppContext";
 import { useEffect } from "react";
+import Head from "next/head";
 
 const Home = (data: Props) =>{
 
@@ -30,6 +31,9 @@ const Home = (data: Props) =>{
 
     return (
         <div className={styles.container}>
+            <Head>
+                <title>Cardapio |{data.tenant.name}</title>
+            </Head>
             <header className={styles.header}>
                 <div className={styles.headerTop}>
                     <div className={styles.headerTopLeft}>
