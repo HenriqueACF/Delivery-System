@@ -70,7 +70,7 @@ export default Home
 
 type Props = {
     tenant: Tenant,
-    products: Product
+    products: Product[]
 }
 
 export const getServerSideProps: GetServerSideProps = async (context)=>{

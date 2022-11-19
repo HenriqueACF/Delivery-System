@@ -1,8 +1,6 @@
 ### SAAS Delivery
 
     TODO:
-        * Consumo da API
-        * Tela de Produto
         * Componente de Quantidade
         * Criar AuthContext
         * Criar Menu
@@ -11,6 +9,7 @@
         * Utilizar Cookies
         * Tela de Checkout
     DOING:
+        * Tela de Produto
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -21,6 +20,7 @@
         * Tela de Login
         * Tela de Cadastro
         * Tela de Esqueci minha senha
+        * Consumo da API
 
 ## Getting Started
 
