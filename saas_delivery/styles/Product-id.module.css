@@ -26,3 +26,64 @@
     width: auto;
     height: 350px;
 }
+
+.category{
+    font-weight: 500;
+    font-size: 16px;
+    color:#1b1b1b;
+    margin: 0 24px;
+}
+
+.title{
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    color: #1b1b1b;
+    margin: 0 24px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid #000;
+    width: fit-content;
+    position: relative;
+}
+
+.line{
+    border-bottom: 1.5px solid #e2e2e2;
+    margin: -1.5px 24px 0 24px;
+}
+
+.description{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(27, 27, 27, .5);
+    margin: 24px;
+}
+
+.qtdTxt{
+    font-weight: 400;
+    font-size: 16px;
+    color: #1b1b1b;
+    margin: 0 24px 16px 24px;
+}
+
+.area{
+    margin: 0 24px;
+    display: flex;
+    align-items: center;
+}
+
+.areaLeft{
+
+}
+
+.areaRight{
+    flex: 1;
+    text-align: right;
+    font-weight: 600;
+    font-size: 40px;
+    color: #000;
+}
+
+.btnArea{
+    margin: 50px 24px;
+}

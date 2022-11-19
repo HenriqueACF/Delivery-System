@@ -1,7 +1,6 @@
 ### SAAS Delivery
 
     TODO:
-        * Componente de Quantidade
         * Criar AuthContext
         * Criar Menu
         * Criar Busca no Cardapio
@@ -10,6 +9,7 @@
         * Tela de Checkout
     DOING:
         * Tela de Produto
+        * Componente de Quantidade
     DONE:
         * Tela Cardapio
         * Banner promocional
