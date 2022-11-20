@@ -1,15 +1,13 @@
 ### SAAS Delivery
 
     TODO:
-        * Criar AuthContext
         * Criar Menu
         * Criar Busca no Cardapio
         * Tela de Carrinho de Compras
         * Utilizar Cookies
         * Tela de Checkout
     DOING:
-        * Tela de Produto
-        * Componente de Quantidade
+        * Criar AuthContext
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -21,6 +19,8 @@
         * Tela de Cadastro
         * Tela de Esqueci minha senha
         * Consumo da API
+        * Tela de Produto
+        * Componente de Quantidade
 
 ## Getting Started
 
