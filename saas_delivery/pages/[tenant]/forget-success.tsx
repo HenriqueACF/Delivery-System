@@ -2,7 +2,7 @@ import styles from '../../styles/ForgetSuccess.module.css'
 import { UseApi } from "../../libs/useApi";
 import { GetServerSideProps } from "next";
 import { Tenant } from "../../types/Tenant";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/app";
 import { useEffect } from "react";
 import Head from "next/head";
 import { Header } from '../../components/Header';

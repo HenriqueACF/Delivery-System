@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 import {SearchInput} from "../../components/SearchInput";
 import { UseApi } from "../../libs/useApi";
 import { Tenant } from "../../types/Tenant";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/app";
 import styles from '../../styles/Home.module.css'
 import {Banner} from "../../components/Banner";
 import {ProductItem} from "../../components/ProductItem";
@@ -14,7 +14,7 @@ const Home = (data: Props) =>{
 
     const {tenant, setTenant} = useAppContext()
 
-    const [products, setProducts] = useState<Product>(data.products)
+    const [products, setProducts] = useState<Product[]>(data.products)
 
     useEffect(()=>{
         setTenant(data.tenant)

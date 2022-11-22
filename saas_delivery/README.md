@@ -7,7 +7,7 @@
         * Utilizar Cookies
         * Tela de Checkout
     DOING:
-        * Criar AuthContext
+        * Melhorar context
     DONE:
         * Tela Cardapio
         * Banner promocional

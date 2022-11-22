@@ -2,13 +2,12 @@ import styles from '../../styles/Forget.module.css'
 import { UseApi } from "../../libs/useApi";
 import { GetServerSideProps } from "next";
 import { Tenant } from "../../types/Tenant";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/app";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Header } from '../../components/Header';
 import { InputField } from '../../components/InputField';
 import { Button } from '../../components/Button';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Forget = (data: Props) =>{
