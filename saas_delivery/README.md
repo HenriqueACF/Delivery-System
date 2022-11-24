@@ -1,12 +1,12 @@
 ### SAAS Delivery
 
     TODO:
-        * Criar Menu
         * Criar Busca no Cardapio
         * Tela de Carrinho de Compras
         * Utilizar Cookies
         * Tela de Checkout
     DOING:
+        * Criar Menu
     DONE:
         * Tela Cardapio
         * Banner promocional

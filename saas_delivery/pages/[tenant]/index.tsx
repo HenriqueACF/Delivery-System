@@ -9,6 +9,7 @@ import styles from '../../styles/Home.module.css'
 import {Banner} from "../../components/Banner";
 import {ProductItem} from "../../components/ProductItem";
 import { Product } from "../../types/Product";
+import { Sidebar } from "../../components/SideBar";
 
 const Home = (data: Props) =>{
 
@@ -46,6 +47,7 @@ const Home = (data: Props) =>{
                             <div className={styles.menuButtonLine} style={{backgroundColor: tenant?.mainColor}}></div>
                             <div className={styles.menuButtonLine} style={{backgroundColor: tenant?.mainColor}}></div>
                         </div>
+                        <Sidebar/>
                     </div>
                 </div>
                 <div className={styles.headerBottom}>
