@@ -7,7 +7,6 @@
         * Utilizar Cookies
         * Tela de Checkout
     DOING:
-        * Melhorar context
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -21,6 +20,7 @@
         * Consumo da API
         * Tela de Produto
         * Componente de Quantidade
+        * Melhorarias no context(App e Auth)
 
 ## Getting Started
 
