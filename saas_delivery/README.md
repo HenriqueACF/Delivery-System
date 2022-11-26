@@ -6,7 +6,6 @@
         * Utilizar Cookies
         * Tela de Checkout
     DOING:
-        * Criar Menu
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -21,6 +20,7 @@
         * Tela de Produto
         * Componente de Quantidade
         * Melhorarias no context(App e Auth)
+        * Criar Menu
 
 ## Getting Started
 
