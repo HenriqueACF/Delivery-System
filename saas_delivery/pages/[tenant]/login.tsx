@@ -10,12 +10,13 @@ import { InputField } from '../../components/InputField';
 import { Button } from '../../components/Button';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useAuthContext } from '../../contexts/auth';
 
 const Login = (data: Props) =>{
 
     const router = useRouter()
-
     const {tenant, setTenant} = useAppContext()
+    const {setToken, setUser} = useAuthContext()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -24,7 +25,12 @@ const Login = (data: Props) =>{
     }, [])
 
     const handleSubmit = () => {
-
+        setToken('1234')
+        setUser({
+            name: 'Henrique',
+            email: 'dev_henrique.assis@proton.me'
+        })
+        router.push(`/${data.tenant.slug}`)
     }
 
     const handleSignup = () => {
@@ -110,10 +116,10 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps = async (context)=>{
     const {tenant: tenantSlug} = context.query
-    const api = UseApi()
+    const api = UseApi(tenantSlug as string)
     
     //get tenant
-    const tenant = await api.getTenant(tenantSlug as string)
+    const tenant = await api.getTenant()
     if(!tenant){
         return {
             redirect: {
