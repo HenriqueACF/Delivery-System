@@ -10,9 +10,13 @@ import {Banner} from "../../components/Banner";
 import {ProductItem} from "../../components/ProductItem";
 import { Product } from "../../types/Product";
 import { Sidebar } from "../../components/SideBar";
+import { getCookie } from "cookies-next";
+import { User } from "../../types/User";
+import { useAuthContext } from "../../contexts/auth";
 
 const Home = (data: Props) =>{
 
+    const {setToken, setUser} = useAuthContext()
     const {tenant, setTenant} = useAppContext()
 
     const [products, setProducts] = useState<Product[]>(data.products)
@@ -20,6 +24,8 @@ const Home = (data: Props) =>{
 
     useEffect(()=>{
         setTenant(data.tenant)
+        setToken(data.token)
+        if(data.user) setUser(data.user)
     }, [])
 
     //FUNCTIONS
@@ -80,7 +86,9 @@ export default Home
 
 type Props = {
     tenant: Tenant,
-    products: Product[]
+    products: Product[],
+    token: string,
+    user: User | null
 }
 
 export const getServerSideProps: GetServerSideProps = async (context)=>{
@@ -98,14 +106,19 @@ export const getServerSideProps: GetServerSideProps = async (context)=>{
         }
     }
 
+    // get logged user
+    const token = getCookie('token', context) ?? null
+    const user = await api.authorizeToken(token as string)
+
     //get products
     const products = await api.getAllProducts()
-
-    console.log('TENANT ->', tenantSlug)
+    
     return {
         props:{
             tenant,
-            products
+            products,
+            user,
+            token
         }
     }
 }
