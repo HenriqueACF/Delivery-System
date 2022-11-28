@@ -1,11 +1,9 @@
 ### SAAS Delivery
 
     TODO:
-        * Criar Busca no Cardapio
-        * Tela de Carrinho de Compras
-        * Utilizar Cookies
         * Tela de Checkout
     DOING:
+        *  Tela de Carrinho de Compras 
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -21,6 +19,8 @@
         * Componente de Quantidade
         * Melhorarias no context(App e Auth)
         * Criar Menu
+        * Utilizar Cookies
+        * Criar Busca no Cardapio
 
 ## Getting Started
 
