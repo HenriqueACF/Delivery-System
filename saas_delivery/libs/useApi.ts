@@ -39,13 +39,19 @@ export const UseApi = (tenantSlug: string) =>({
     getAllProducts: async() => {
         let products = []
         for (let q = 0; q < 100; q++){
-            products.push(TemporaryProduct)
+            products.push({
+                ...TemporaryProduct,
+                id: q + 1
+            })
         }
         return products
     },
 
-    getProduct: async(id: string) => {
-        return TemporaryProduct
+    getProduct: async(id: number) => {
+        return {
+            ...TemporaryProduct,
+            id
+        }
     },
 
     authorizeToken: async (token: string): Promise<User | false> => {
