@@ -57,7 +57,7 @@ const Product = (data: Props) =>{
         setCookie('cart', JSON.stringify(cart))
 
         // redireciona para a pagina do carrinho
-        // router.push(`/${data.tenant.slug}/cart`)
+        router.push(`/${data.tenant.slug}/cart`)
     }
 
     const handleUpdateQT = (newCount: number) => {
