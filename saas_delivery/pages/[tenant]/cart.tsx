@@ -21,7 +21,8 @@ const Cart = (data: Props) =>{
     const formater = useFormatter()
 
     const [shippingInput, setShippingInput] = useState('')
-    const [shippingPrice, setShippingPrice] = useState(0)
+    const [shippingPrice, setShippingPrice] = useState(20)
+    const [subTotal, setSubTotal] = useState(5)
 
     useEffect(()=>{
         setTenant(data.tenant)
@@ -30,6 +31,10 @@ const Cart = (data: Props) =>{
     }, [])
 
     const handleShippingCalc = () => {
+
+    }
+
+    const handleFinish = () => {
 
     }
 
@@ -56,7 +61,7 @@ const Cart = (data: Props) =>{
             <div className={styles.shippingArea}>
                 <div className={styles.shippingTitle}>Calcular frete e prazo</div>
 
-                <div className={styles.shippingFrom}>
+                <div className={styles.shippingForm}>
                     <InputField
                         color={data.tenant.mainColor}
                         placeholder="Digite seu CEP"
@@ -72,7 +77,7 @@ const Cart = (data: Props) =>{
                 </div>
 
                 <div className={styles.shippingInfo}>
-                    <div className={styles.shippingAddress}></div>
+                    <div className={styles.shippingAddress}>Rua lalala</div>
                     <div className={styles.shippingTime}>
                         <div className={styles.shippingTimeText}>Receba</div>
                         <div
@@ -86,7 +91,34 @@ const Cart = (data: Props) =>{
             </div>
 
             <div className={styles.resumeArea}>
-                
+                <div className={styles.resumeItem}>
+                    <div className={styles.resumeLeft}>Subtotal</div>
+                    <div className={styles.resumeRight}>{formater.formatPrice(subTotal)}</div>
+                </div>
+
+                <div className={styles.resumeItem}>
+                    <div className={styles.resumeLeft}>Frete</div>
+                    <div className={styles.resumeRight}>{shippingPrice > 0 ? formater.formatPrice(shippingPrice) : '--'}</div>
+                </div>
+
+                <div className={styles.resumeLine}></div>
+
+                <div className={styles.resumeItem}>
+                    <div className={styles.resumeLeft}>Total</div>
+                    <div 
+                        className={styles.resumeRightBig}
+                        style={{color:data.tenant.mainColor}}
+                        >{shippingPrice > 0 ? formater.formatPrice(shippingPrice + subTotal) : '--'}</div>
+                </div>
+
+                <div className={styles.resumeBtn}>
+                    <Button
+                        color={data.tenant.mainColor}
+                        label="Continuar"
+                        onClick={handleFinish}
+                        fill
+                    />
+                </div>
             </div>
         </div>
     )
