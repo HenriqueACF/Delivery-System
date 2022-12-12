@@ -13,30 +13,56 @@ import { InputField } from "../../components/InputField";
 import { Button } from "../../components/Button";
 import { useFormatter } from "../../libs/useFormatter";
 import { CartItem } from "../../types/CartItem";
+import { useRouter } from "next/router";
 
 const Cart = (data: Props) =>{
 
     const {setToken, setUser} = useAuthContext()
     const {tenant, setTenant} = useAppContext()
     const formater = useFormatter()
+    const router = useRouter()
 
+    // product control
+    const [cart, setCart] = useState<CartItem[]>(data.cart)
+
+    //shipping
     const [shippingInput, setShippingInput] = useState('')
-    const [shippingPrice, setShippingPrice] = useState(20)
+    const [shippingAddress, setShippingAddress] = useState('')
+    const [shippingPrice, setShippingPrice] = useState(0)
+    const [shippingTime, setShippingTime] = useState(0)
+
+    const handleShippingCalc = () => {
+        setShippingAddress('Rua Blá Blá Blá')
+        setShippingPrice(9.5)
+        setShippingTime(45)
+    }
+
+    //resume
     const [subTotal, setSubTotal] = useState(5)
+
+    useEffect(()=>{
+        let sub = 0
+        for(let i in cart){
+            sub += cart[i].product.price * cart[i].qt
+        }
+        setSubTotal(sub)
+    }, [cart])
+    
+    const handleFinish = () => {
+        router.push(`/${data.tenant.slug}/checkout`)
+    }
 
     useEffect(()=>{
         setTenant(data.tenant)
         setToken(data.token)
         if(data.user) setUser(data.user)
-    }, [])
+    })
 
-    const handleShippingCalc = () => {
-
-    }
-
-    const handleFinish = () => {
-
-    }
+    // useEffect(()=>{
+    //     setTenant(data.tenant)
+    //     setToken(data.token)
+    //     if(data.user) setUser(data.user)
+    // }, [])
 
     return (
         <div className={styles.container}>
@@ -51,7 +77,7 @@ const Cart = (data: Props) =>{
             />
 
             <div className={styles.productquantity}>
-                X itens
+                {cart.length} {cart.length === 1 ? 'Item' : 'Itens'}
             </div>
 
             <div className={styles.productList}>
@@ -76,10 +102,11 @@ const Cart = (data: Props) =>{
                         />
                 </div>
 
-                <div className={styles.shippingInfo}>
-                    <div className={styles.shippingAddress}>Rua lalala</div>
+                {shippingTime > 0 &&
+                    <div className={styles.shippingInfo}>
+                    <div className={styles.shippingAddress}>{shippingAddress}</div>
                     <div className={styles.shippingTime}>
-                        <div className={styles.shippingTimeText}>Receba</div>
+                        <div className={styles.shippingTimeText}>Receba em até {shippingTime} minutos</div>
                         <div
                             style={{color: data.tenant.mainColor}} 
                             className={styles.shippingPrice}
@@ -87,7 +114,7 @@ const Cart = (data: Props) =>{
                             {formater.formatPrice(shippingPrice)}
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
 
             <div className={styles.resumeArea}>
