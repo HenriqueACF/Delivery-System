@@ -1,0 +1,37 @@
+.container{
+    display: flex;
+    align-items: center;
+    border-bottom: 1.5px solid rgba(27, 27, 27, 0.1);
+}
+
+.productImage{
+    width: 85px;
+}
+
+.productInfo{
+    flex: 1;
+    margin-left: 19px;
+}
+
+.productCategory{
+    font-weight: 400;
+    font-size: 12px;
+    color: rgba(27, 27, 27, 0.5);
+}
+
+.productName{
+    font-weight: 500;
+    font-size: 16px;
+    color: #1b1b1b;
+}
+
+.productPrice{
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+
+.qtControl{
+
+}

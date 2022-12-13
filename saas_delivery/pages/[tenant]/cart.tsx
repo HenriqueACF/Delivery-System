@@ -5,7 +5,7 @@ import { UseApi } from "../../libs/useApi";
 import { Tenant } from "../../types/Tenant";
 import { useAppContext } from "../../contexts/app";
 import styles from '../../styles/Cart.module.css'
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { User } from "../../types/User";
 import { useAuthContext } from "../../contexts/auth";
 import { Header } from "../../components/Header";
@@ -14,6 +14,8 @@ import { Button } from "../../components/Button";
 import { useFormatter } from "../../libs/useFormatter";
 import { CartItem } from "../../types/CartItem";
 import { useRouter } from "next/router";
+import { CartProductItem } from "../../components/CartProductItem/Index";
+import { CartCookie } from "../../types/CartCookie";
 
 const Cart = (data: Props) =>{
 
@@ -24,6 +26,31 @@ const Cart = (data: Props) =>{
 
     // product control
     const [cart, setCart] = useState<CartItem[]>(data.cart)
+
+    const handleCartChange = (newCount: number, id: number) => {
+        const tempCart: CartItem[] = [...cart]
+        const cartIndex = tempCart.findIndex(item => item.product.id === id)
+
+        if(newCount > 0){
+            tempCart[cartIndex].qt = newCount
+        } else {
+            delete tempCart[cartIndex]
+        }    
+        
+        let newCart: CartItem[] = tempCart.filter(item => item)
+        setCart(newCart)
+
+        //update cookies
+        let cartCookie: CartCookie[] = []
+        for(let i in newCart){
+            cartCookie.push({
+                id: newCart[i].product.id,
+                qt: newCart[i].qt
+            })
+        }
+
+        setCookie('cart', JSON.stringify(cartCookie))
+    }
 
     //shipping
     const [shippingInput, setShippingInput] = useState('')
@@ -38,7 +65,7 @@ const Cart = (data: Props) =>{
     }
 
     //resume
-    const [subTotal, setSubTotal] = useState(5)
+    const [subTotal, setSubTotal] = useState(1)
 
     useEffect(()=>{
         let sub = 0
@@ -47,22 +74,16 @@ const Cart = (data: Props) =>{
         }
         setSubTotal(sub)
     }, [cart])
-    
-    const handleFinish = () => {
-        router.push(`/${data.tenant.slug}/checkout`)
-    }
 
     useEffect(()=>{
         setTenant(data.tenant)
         setToken(data.token)
         if(data.user) setUser(data.user)
-    })
+    }, [])
 
-    // useEffect(()=>{
-    //     setTenant(data.tenant)
-    //     setToken(data.token)
-    //     if(data.user) setUser(data.user)
-    // }, [])
+    const handleFinish = () => {
+        router.push(`/${data.tenant.slug}/checkout`)
+    }
 
     return (
         <div className={styles.container}>
@@ -81,7 +102,15 @@ const Cart = (data: Props) =>{
             </div>
 
             <div className={styles.productList}>
-
+                {cart.map((cartItem, index)=>(
+                    <CartProductItem 
+                        key={index}
+                        color={data.tenant.mainColor}
+                        quantity={cartItem.qt}
+                        product={cartItem.product}
+                        onChange={handleCartChange}    
+                    />
+                ))}
             </div>
 
             <div className={styles.shippingArea}>
@@ -182,6 +211,7 @@ export const getServerSideProps: GetServerSideProps = async (context)=>{
     // get cart product
     const cartCookie = getCookie('cart', context)
     const cart = await api.getCartProducts(cartCookie as string)
+    console.log('cart ->', cart)
     
     return {
         props:{

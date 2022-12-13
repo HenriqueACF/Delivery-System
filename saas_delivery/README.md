@@ -3,7 +3,6 @@
     TODO:
         * Tela de Checkout
     DOING:
-        *  Tela de Carrinho de Compras 
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -21,6 +20,7 @@
         * Criar Menu
         * Utilizar Cookies
         * Criar Busca no Cardapio
+        * Tela de Carrinho de Compras 
 
 ## Getting Started
 
