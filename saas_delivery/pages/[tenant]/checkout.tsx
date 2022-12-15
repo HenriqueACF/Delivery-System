@@ -128,7 +128,23 @@ const Checkout = (data: Props) =>{
                     Forma de Pagamento
                 </div>
                 <div className={styles.infoBody}>
-                    ...
+                    <div className={styles.paymentType}>
+                        <div className={styles.paymentBtn}>
+                            <ButtonWithIcon
+                               color={data.tenant.mainColor}
+                               leftIcon="money"
+                               value="Dinheiro"
+                               onClick={()=>{}}
+                               fill/>
+                        </div>
+                        <div className={styles.paymentBtn}>
+                            <ButtonWithIcon
+                                color={data.tenant.mainColor}
+                                leftIcon="card"
+                                value="Cartão"
+                                onClick={()=>{}}/>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -137,7 +153,11 @@ const Checkout = (data: Props) =>{
                     Troco
                 </div>
                 <div className={styles.infoBody}>
-                    ...
+                    <InputField
+                        color={data.tenant.mainColor}
+                        placeholder="Quanto você tem em dinheiro?"
+                        value={""}
+                        onChange={newValue => {}}/>
                 </div>
             </div>
 
@@ -146,7 +166,12 @@ const Checkout = (data: Props) =>{
                     Cupom de Desconto
                 </div>
                 <div className={styles.infoBody}>
-                    ...
+                    <ButtonWithIcon
+                        color={data.tenant.mainColor}
+                        value="CUPOM10"
+                        leftIcon="cupom"
+                        rightIcon="checked"
+                    />
                 </div>
             </div>
 
