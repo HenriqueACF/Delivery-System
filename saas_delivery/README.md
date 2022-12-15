@@ -1,8 +1,8 @@
 ### SAAS Delivery
 
     TODO:
-        * Tela de Checkout
     DOING:
+        * Tela de Checkout
     DONE:
         * Tela Cardapio
         * Banner promocional
