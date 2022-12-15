@@ -185,7 +185,8 @@ const Checkout = (data: Props) =>{
                         color={data.tenant.mainColor}
                         quantity={cartItem.qt}
                         product={cartItem.product}
-                        onChange={handleCartChange}    
+                        onChange={handleCartChange}
+                        noEdit
                     />
                 ))}
             </div>
