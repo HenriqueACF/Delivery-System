@@ -16,6 +16,7 @@ import { CartItem } from "../../types/CartItem";
 import { useRouter } from "next/router";
 import { CartProductItem } from "../../components/CartProductItem/Index";
 import { CartCookie } from "../../types/CartCookie";
+import {ButtonWithIcon} from "../../components/ButtonWithIcon";
 
 const Checkout = (data: Props) =>{
 
@@ -85,6 +86,10 @@ const Checkout = (data: Props) =>{
         router.push(`/${data.tenant.slug}/checkout`)
     }
 
+    const handleChangeAddress = () =>{
+        console.log('indo para tela de endereço ->')
+    }
+
     return (
         <div className={styles.container}>
             <Head>
@@ -108,7 +113,13 @@ const Checkout = (data: Props) =>{
                     Endereço
                 </div>
                 <div className={styles.infoBody}>
-                    ...
+                    <ButtonWithIcon
+                        color={data.tenant.mainColor}
+                        leftIcon={"location"}
+                        rightIcon={"rightArrow"}
+                        value={"Rua Teste, 12374290374937493475934875984735897349857439823074203947"}
+                        onClick={handleChangeAddress}
+                    />
                 </div>
             </div>
 
