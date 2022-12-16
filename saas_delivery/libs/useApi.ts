@@ -3,6 +3,8 @@ import { Product } from "../types/Product";
 import { Tenant } from "../types/Tenant"
 import { User } from "../types/User";
 import { CartItem } from '../types/CartItem';
+import {Address} from "../types/Address";
+import {returnStatement} from "@babel/types";
 
 const TemporaryProduct: Product = {
     id:3,
@@ -85,5 +87,24 @@ export const UseApi = (tenantSlug: string) =>({
         }
 
         return cart
+    },
+
+    getUserAddresses: async (email: string) => {
+        const addresses: Address[] = []
+
+        for(let i = 0; i < 4; i++){
+            addresses.push({
+                id: i + 1,
+                street: 'Rua lalala',
+                number: `${i + 1}00`,
+                cep: '9999999',
+                city: 'cidade teste',
+                neighborhood: 'Bairro Testando',
+                state: 'PA',
+                complement: "ali na esquina"
+            })
+        }
+
+        return addresses
     }
 })
