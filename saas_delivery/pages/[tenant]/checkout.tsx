@@ -29,30 +29,30 @@ const Checkout = (data: Props) =>{
     // product control
     const [cart, setCart] = useState<CartItem[]>(data.cart)
 
-    const handleCartChange = (newCount: number, id: number) => {
-        const tempCart: CartItem[] = [...cart]
-        const cartIndex = tempCart.findIndex(item => item.product.id === id)
-
-        if(newCount > 0){
-            tempCart[cartIndex].qt = newCount
-        } else {
-            delete tempCart[cartIndex]
-        }    
-        
-        let newCart: CartItem[] = tempCart.filter(item => item)
-        setCart(newCart)
-
-        //update cookies
-        let cartCookie: CartCookie[] = []
-        for(let i in newCart){
-            cartCookie.push({
-                id: newCart[i].product.id,
-                qt: newCart[i].qt
-            })
-        }
-
-        setCookie('cart', JSON.stringify(cartCookie))
-    }
+    // const handleCartChange = (newCount: number, id: number) => {
+    //     const tempCart: CartItem[] = [...cart]
+    //     const cartIndex = tempCart.findIndex(item => item.product.id === id)
+    //
+    //     if(newCount > 0){
+    //         tempCart[cartIndex].qt = newCount
+    //     } else {
+    //         delete tempCart[cartIndex]
+    //     }
+    //
+    //     let newCart: CartItem[] = tempCart.filter(item => item)
+    //     setCart(newCart)
+    //
+    //     //update cookies
+    //     let cartCookie: CartCookie[] = []
+    //     for(let i in newCart){
+    //         cartCookie.push({
+    //             id: newCart[i].product.id,
+    //             qt: newCart[i].qt
+    //         })
+    //     }
+    //
+    //     setCookie('cart', JSON.stringify(cartCookie))
+    // }
 
     //shipping
     const [shippingPrice, setShippingPrice] = useState(0)
@@ -72,6 +72,11 @@ const Checkout = (data: Props) =>{
         })
         setShippingPrice(9.5)
     }
+
+    // payments
+    const [paymentType, setPaymentType] = useState<'money' | 'card'>('money')
+    const [paymentChange, setPaymentChange] = useState(0)
+
 
     //resume
     const [subTotal, setSubTotal] = useState(1)
@@ -141,32 +146,36 @@ const Checkout = (data: Props) =>{
                                color={data.tenant.mainColor}
                                leftIcon="money"
                                value="Dinheiro"
-                               onClick={()=>{}}
-                               fill/>
+                               onClick={()=> setPaymentType('money')}
+                               fill={paymentType === 'money'}/>
                         </div>
+
                         <div className={styles.paymentBtn}>
                             <ButtonWithIcon
                                 color={data.tenant.mainColor}
                                 leftIcon="card"
                                 value="Cartão"
-                                onClick={()=>{}}/>
+                                onClick={()=>setPaymentType('card')}
+                                fill={paymentType === 'card'}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className={styles.infoArea}>
-                <div className={styles.infoTitle}>
-                    Troco
-                </div>
-                <div className={styles.infoBody}>
-                    <InputField
-                        color={data.tenant.mainColor}
-                        placeholder="Quanto você tem em dinheiro?"
-                        value={""}
-                        onChange={newValue => {}}/>
-                </div>
-            </div>
+                {paymentType === 'money' &&
+                    <div className={styles.infoArea}>
+                    <div className={styles.infoTitle}>
+                        Troco
+                    </div>
+                    <div className={styles.infoBody}>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Quanto você tem em dinheiro?"
+                            value={paymentChange ? paymentChange.toString() : ''}
+                            onChange={newValue => setPaymentChange(parseInt(newValue))}/>
+                    </div>
+                </div>}
 
             <div className={styles.infoArea}>
                 <div className={styles.infoTitle}>
@@ -192,7 +201,7 @@ const Checkout = (data: Props) =>{
                         color={data.tenant.mainColor}
                         quantity={cartItem.qt}
                         product={cartItem.product}
-                        onChange={handleCartChange}
+                        onChange={()=>{} }
                         noEdit
                     />
                 ))}
