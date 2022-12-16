@@ -1,8 +1,10 @@
 ### SAAS Delivery
 
     TODO:
+        * CRUD - Endereço
+        * Tela de Pedido
     DOING:
-        * Tela de Checkout
+        * Tela de Endereço
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -21,6 +23,7 @@
         * Utilizar Cookies
         * Criar Busca no Cardapio
         * Tela de Carrinho de Compras 
+        * Tela de Checkout
 
 ## Getting Started
 

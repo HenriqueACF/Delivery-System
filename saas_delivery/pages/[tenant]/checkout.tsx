@@ -5,7 +5,7 @@ import { UseApi } from "../../libs/useApi";
 import { Tenant } from "../../types/Tenant";
 import { useAppContext } from "../../contexts/app";
 import styles from '../../styles/Checkout.module.css'
-import { getCookie, setCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 import { User } from "../../types/User";
 import { useAuthContext } from "../../contexts/auth";
 import { Header } from "../../components/Header";
@@ -15,7 +15,6 @@ import { useFormatter } from "../../libs/useFormatter";
 import { CartItem } from "../../types/CartItem";
 import { useRouter } from "next/router";
 import { CartProductItem } from "../../components/CartProductItem/Index";
-import { CartCookie } from "../../types/CartCookie";
 import {ButtonWithIcon} from "../../components/ButtonWithIcon";
 import {Address} from "../../types/Address";
 
@@ -29,48 +28,12 @@ const Checkout = (data: Props) =>{
     // product control
     const [cart, setCart] = useState<CartItem[]>(data.cart)
 
-    // const handleCartChange = (newCount: number, id: number) => {
-    //     const tempCart: CartItem[] = [...cart]
-    //     const cartIndex = tempCart.findIndex(item => item.product.id === id)
-    //
-    //     if(newCount > 0){
-    //         tempCart[cartIndex].qt = newCount
-    //     } else {
-    //         delete tempCart[cartIndex]
-    //     }
-    //
-    //     let newCart: CartItem[] = tempCart.filter(item => item)
-    //     setCart(newCart)
-    //
-    //     //update cookies
-    //     let cartCookie: CartCookie[] = []
-    //     for(let i in newCart){
-    //         cartCookie.push({
-    //             id: newCart[i].product.id,
-    //             qt: newCart[i].qt
-    //         })
-    //     }
-    //
-    //     setCookie('cart', JSON.stringify(cartCookie))
-    // }
-
     //shipping
     const [shippingPrice, setShippingPrice] = useState(0)
     const [shippingAddress, setShippingAddress] = useState<Address>()
 
     const handleChangeAddress = () =>{
-        router.push(`/${data.tenant.slug}/my-address`)
-        // setShippingAddress({
-        //     complement: "vira pra esquerda depois 3x pra direira",
-        //     id: 1,
-        //     cep: '9999999',
-        //     street: 'Rua bla bla bla',
-        //     number:'321',
-        //     neighborhood:'bairro teste',
-        //     city:'Belém',
-        //     state:'PA'
-        // })
-        // setShippingPrice(9.5)
+        router.push(`/${data.tenant.slug}/myaddress`)
     }
 
     // payments
@@ -113,7 +76,7 @@ const Checkout = (data: Props) =>{
     return (
         <div className={styles.container}>
             <Head>
-                <title>Chackout | {data.tenant.name} </title>
+                <title>Checkou | {data.tenant.name} </title>
             </Head>
 
             <Header
