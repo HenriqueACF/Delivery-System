@@ -13,6 +13,7 @@ import { useFormatter } from "../../libs/useFormatter";
 import { useRouter } from "next/router";
 import {Button} from "../../components/Button";
 import {Address} from "../../types/Address";
+import {AddressItem} from "../../components/AddressItem/Index";
 
 const MyAddress = (data: Props) =>{
 
@@ -32,6 +33,34 @@ const MyAddress = (data: Props) =>{
         router.push(`/${data.tenant.slug}/newaddress`)
     }
 
+    const handleAddressSelect = (address: Address) =>{
+
+    }
+
+    const handleAddressEdit = (id: number) => {
+
+    }
+
+    const handleAddressDelete = (id: number) => {
+
+    }
+
+    //menu events
+    const [menuOpened, setMenuOpened] = useState(0)
+    const handleMenuEvent = (event: MouseEvent) => {
+        const tagName = (event.target as Element).tagName
+        console.log(tagName)
+        if(!['path', 'svg'].includes(tagName)){
+            setMenuOpened(0)
+        }
+    }
+
+    useEffect(()=>{
+        window.removeEventListener('click', handleMenuEvent)
+        window.addEventListener('click', handleMenuEvent)
+        return () => window.removeEventListener('click', handleMenuEvent)
+    }, [menuOpened])
+
     return (
         <div className={styles.container}>
             <Head>
@@ -46,7 +75,16 @@ const MyAddress = (data: Props) =>{
 
             <div className={styles.list}>
                 {data.addresses.map((item, index)=>(
-                    <div key={index}>{item.street} - {item.number}</div>
+                    <AddressItem
+                        key={index}
+                        color={data.tenant.mainColor}
+                        address={item}
+                        onSelect={handleAddressSelect}
+                        onEdit={handleAddressEdit}
+                        onDelete={handleAddressDelete}
+                        menuOpened={menuOpened}
+                        setMenuOpened={setMenuOpened}
+                    />
                 ))}
             </div>
 
