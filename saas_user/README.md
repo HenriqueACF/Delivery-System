@@ -1,11 +1,10 @@
 ### SAAS USER
 
     TODO:
-        * CRUD - Endereço
         * Tela de Pedido
         * Finalizar Pedido
     DOING:
-        * Tela de Endereço
+        * CRUD - Endereço
     DONE:
         * Tela Cardapio
         * Banner promocional
@@ -25,6 +24,7 @@
         * Criar Busca no Cardapio
         * Tela de Carrinho de Compras 
         * Tela de Checkout
+        * Tela de Endereço
     TO REVIEW:
         * 
 

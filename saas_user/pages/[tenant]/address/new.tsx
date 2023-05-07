@@ -14,6 +14,8 @@ import {Button} from "../../../components/Button";
 import {Header} from "../../../components/Header";
 import {Address} from "../../../types/Address";
 import {InputField} from "../../../components/InputField";
+import {string} from "prop-types";
+import {width} from "dom7";
 
 const NewAddress = (data: Props) =>{
 
@@ -37,8 +39,67 @@ const NewAddress = (data: Props) =>{
     const [addressCity, setAddressCity] = useState<string>('')
     const [addressState, setAddressState] = useState<string>('')
     const [addressComplement, setAddressComplement] = useState<string>('')
-    const handleNewAddress = () => {
-        router.push(`/${data.tenant.slug}/address/new`)
+    const [errorFields, setErrorFields] = useState<string[]>([])
+
+    //VALIDATIONS
+    const verifyAddress = () => {
+        let newErrorFields = []
+        let approved = true
+
+        if(addressCep.replaceAll(/[^0-9]/g, '').length !== 8){
+            newErrorFields.push('cep')
+            approved = false
+        }
+
+        if(addressStreet.length <=2){
+            newErrorFields.push('street')
+            approved = false
+        }
+
+        // if (addressNumber.length < 1 ){
+        //
+        // }
+
+        if(addressNeighborhood.length <=2){
+            newErrorFields.push('neigh')
+            approved = false
+        }
+
+        if(addressCity.length <=2){
+            newErrorFields.push('city')
+            approved = false
+        }
+
+        if(addressState.length !== 2){
+            newErrorFields.push('state')
+            approved = false
+        }
+
+        setErrorFields(newErrorFields)
+        return approved
+    }
+
+    const handleNewAddress = async () => {
+        if(verifyAddress()){
+            let address: Address = {
+                id: 0,
+                cep: addressCep,
+                street: addressStreet,
+                number: addressNumber,
+                neighborhood: addressNeighborhood,
+                city: addressCity,
+                state: addressState,
+                complement: addressComplement
+            }
+
+            let newAddress = await api.addUserAddress(address)
+            if(newAddress.id > 0){
+                router.push(`/${data.tenant.slug}/myaddress`)
+                alert('Endereço adicionado com sucesso!')
+            } else{
+                alert('ocorreu um erro! tente mais tarde')
+            }
+        }
     }
 
     return (
@@ -48,7 +109,7 @@ const NewAddress = (data: Props) =>{
             </Head>
 
             <Header
-                backHref={`/${data.tenant.slug}/checkout`}
+                backHref={`/${data.tenant.slug}/myaddress`}
                 color={data.tenant.mainColor}
                 title="Novo Endereço"
             />
@@ -60,9 +121,11 @@ const NewAddress = (data: Props) =>{
                         <div className={styles.label}>CEP</div>
                         <InputField
                             color={data.tenant.mainColor}
-                            placeholder="Digite um CEP"
+                            placeholder="Digite o CEP"
                             value={addressCep}
-                            onChange={value => setAddressCep(value)}/>
+                            onChange={value => setAddressCep(value)}
+                            warning={errorFields.includes('cep')}
+                        />
                     </div>
                 </div>
 
@@ -73,15 +136,19 @@ const NewAddress = (data: Props) =>{
                             color={data.tenant.mainColor}
                             placeholder="Digite o nome da Rua"
                             value={addressStreet}
-                            onChange={value => setAddressStreet(value)}/>
+                            onChange={value => setAddressStreet(value)}
+                            warning={errorFields.includes('street')}
+                        />
                     </div>
                     <div className={styles.column}>
                         <div className={styles.label}>Número</div>
                         <InputField
                             color={data.tenant.mainColor}
-                            placeholder="Digite o numero"
+                            placeholder="Digite o Numero"
                             value={addressNumber}
-                            onChange={value => setAddressNumber(value)}/>
+                            onChange={value => setAddressNumber(value)}
+                            // warning={errorFields.includes('cep')}
+                        />
                     </div>
                 </div>
 
@@ -90,9 +157,11 @@ const NewAddress = (data: Props) =>{
                         <div className={styles.label}>Bairro</div>
                         <InputField
                             color={data.tenant.mainColor}
-                            placeholder="Digite o bairro"
+                            placeholder="Digite o Bairro"
                             value={addressNeighborhood}
-                            onChange={value => setAddressNeighborhood(value)}/>
+                            onChange={value => setAddressNeighborhood(value)}
+                            warning={errorFields.includes('neigh')}
+                        />
                     </div>
                 </div>
 
@@ -103,7 +172,9 @@ const NewAddress = (data: Props) =>{
                             color={data.tenant.mainColor}
                             placeholder="Digite a Cidade"
                             value={addressCity}
-                            onChange={value => setAddressCity(value)}/>
+                            onChange={value => setAddressCity(value)}
+                            warning={errorFields.includes('city')}
+                        />
                     </div>
                 </div>
 
@@ -114,7 +185,9 @@ const NewAddress = (data: Props) =>{
                             color={data.tenant.mainColor}
                             placeholder="Digite o Estado"
                             value={addressState}
-                            onChange={value => setAddressState(value)}/>
+                            onChange={value => setAddressState(value)}
+                            warning={errorFields.includes('state')}
+                        />
                     </div>
                 </div>
 
