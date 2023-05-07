@@ -13,6 +13,7 @@ import {User} from "../../../types/User";
 import {Button} from "../../../components/Button";
 import {Header} from "../../../components/Header";
 import {Address} from "../../../types/Address";
+import {InputField} from "../../../components/InputField";
 
 const NewAddress = (data: Props) =>{
 
@@ -28,7 +29,14 @@ const NewAddress = (data: Props) =>{
     const formater = useFormatter()
     const router = useRouter()
     const api = UseApi(data.tenant.slug)
-
+    //STATES
+    const [addressCep, setAddressCep] = useState<string>('')
+    const [addressStreet, setAddressStreet] = useState<string>('')
+    const [addressNumber, setAddressNumber] = useState<string>('')
+    const [addressNeighborhood, setAddressNeighborhood] = useState<string>('')
+    const [addressCity, setAddressCity] = useState<string>('')
+    const [addressState, setAddressState] = useState<string>('')
+    const [addressComplement, setAddressComplement] = useState<string>('')
     const handleNewAddress = () => {
         router.push(`/${data.tenant.slug}/address/new`)
     }
@@ -45,10 +53,88 @@ const NewAddress = (data: Props) =>{
                 title="Novo Endereço"
             />
 
+            <div className={styles.inputs}>
+
+                <div className={styles.row}>
+                    <div className={styles.column}>
+                        <div className={styles.label}>CEP</div>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Digite um CEP"
+                            value={addressCep}
+                            onChange={value => setAddressCep(value)}/>
+                    </div>
+                </div>
+
+                <div className={styles.row}>
+                    <div className={styles.column}>
+                        <div className={styles.label}>Rua</div>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Digite o nome da Rua"
+                            value={addressStreet}
+                            onChange={value => setAddressStreet(value)}/>
+                    </div>
+                    <div className={styles.column}>
+                        <div className={styles.label}>Número</div>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Digite o numero"
+                            value={addressNumber}
+                            onChange={value => setAddressNumber(value)}/>
+                    </div>
+                </div>
+
+                <div className={styles.row}>
+                    <div className={styles.column}>
+                        <div className={styles.label}>Bairro</div>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Digite o bairro"
+                            value={addressNeighborhood}
+                            onChange={value => setAddressNeighborhood(value)}/>
+                    </div>
+                </div>
+
+                <div className={styles.row}>
+                    <div className={styles.column}>
+                        <div className={styles.label}>Cidade</div>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Digite a Cidade"
+                            value={addressCity}
+                            onChange={value => setAddressCity(value)}/>
+                    </div>
+                </div>
+
+                <div className={styles.row}>
+                    <div className={styles.column}>
+                        <div className={styles.label}>Estado</div>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Digite o Estado"
+                            value={addressState}
+                            onChange={value => setAddressState(value)}/>
+                    </div>
+                </div>
+
+                <div className={styles.row}>
+                    <div className={styles.column}>
+                        <div className={styles.label}>Complemento</div>
+                        <InputField
+                            color={data.tenant.mainColor}
+                            placeholder="Digite o Complemento"
+                            value={addressComplement}
+                            onChange={value => setAddressComplement(value)}/>
+                    </div>
+                </div>
+
+            </div>
+
             <div className={styles.btnArea}>
                 <Button
                     color={data.tenant.mainColor}
-                    label="Novo Endereço"
+                    label="Adicionar"
                     onClick={handleNewAddress}
                     fill
                 />
