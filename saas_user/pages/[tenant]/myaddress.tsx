@@ -28,21 +28,27 @@ const MyAddress = (data: Props) =>{
 
     const formater = useFormatter()
     const router = useRouter()
+    const api = UseApi(data.tenant.slug)
 
     const handleNewAddress = () => {
         router.push(`/${data.tenant.slug}/newaddress`)
     }
 
-    const handleAddressSelect = (address: Address) =>{
-
+    const handleAddressSelect = async(address: Address) =>{
+        const price = await api.getShippingPrice(address)
+        if(price){
+            // salvar no contexto: endereço e frete
+            router.push(`/${data.tenant.slug}/checkout`)
+        }
+        console.log(`Selecionou o endereço: ${address.street} ${address.number}`)
     }
 
     const handleAddressEdit = (id: number) => {
-
+        console.log(`Editando o ${id}`)
     }
 
     const handleAddressDelete = (id: number) => {
-
+        console.log(`Editando o ${id}`)
     }
 
     //menu events

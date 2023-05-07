@@ -1,8 +1,9 @@
-### SAAS Delivery
+### SAAS USER
 
     TODO:
         * CRUD - Endereço
         * Tela de Pedido
+        * Finalizar Pedido
     DOING:
         * Tela de Endereço
     DONE:
@@ -24,13 +25,7 @@
         * Criar Busca no Cardapio
         * Tela de Carrinho de Compras 
         * Tela de Checkout
+    TO REVIEW:
+        * Checar porque nao esta selecionando o endereço
 
-## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
