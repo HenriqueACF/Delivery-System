@@ -16,12 +16,11 @@ import { CartItem } from "../../types/CartItem";
 import { useRouter } from "next/router";
 import { CartProductItem } from "../../components/CartProductItem/Index";
 import {ButtonWithIcon} from "../../components/ButtonWithIcon";
-import {Address} from "../../types/Address";
 
 const Checkout = (data: Props) =>{
 
     const {setToken, setUser} = useAuthContext()
-    const {tenant, setTenant} = useAppContext()
+    const {tenant, setTenant, shippingAddress, shippingPrice} = useAppContext()
     const formater = useFormatter()
     const router = useRouter()
 
@@ -29,9 +28,6 @@ const Checkout = (data: Props) =>{
     const [cart, setCart] = useState<CartItem[]>(data.cart)
 
     //shipping
-    const [shippingPrice, setShippingPrice] = useState(0)
-    const [shippingAddress, setShippingAddress] = useState<Address>()
-
     const handleChangeAddress = () =>{
         router.push(`/${data.tenant.slug}/myaddress`)
     }
@@ -76,7 +72,7 @@ const Checkout = (data: Props) =>{
     return (
         <div className={styles.container}>
             <Head>
-                <title>Checkou | {data.tenant.name} </title>
+                <title>Checkout | {data.tenant.name} </title>
             </Head>
 
             <Header

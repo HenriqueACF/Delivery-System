@@ -18,7 +18,7 @@ import {AddressItem} from "../../components/AddressItem/Index";
 const MyAddress = (data: Props) =>{
 
     const {setToken, setUser} = useAuthContext()
-    const {tenant, setTenant} = useAppContext()
+    const {tenant, setTenant, setShippingAddress, setShippingPrice} = useAppContext()
 
     useEffect(() =>{
         setTenant(data.tenant)
@@ -38,6 +38,8 @@ const MyAddress = (data: Props) =>{
         const price = await api.getShippingPrice(address)
         if(price){
             // salvar no contexto: endereço e frete
+            setShippingAddress(address)
+            setShippingPrice(price)
             router.push(`/${data.tenant.slug}/checkout`)
         }
         console.log(`Selecionou o endereço: ${address.street} ${address.number}`)

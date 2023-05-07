@@ -26,6 +26,6 @@
         * Tela de Carrinho de Compras 
         * Tela de Checkout
     TO REVIEW:
-        * Checar porque nao esta selecionando o endereço
+        * 
 
 
