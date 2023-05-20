@@ -115,5 +115,23 @@ export const UseApi = (tenantSlug: string) =>({
     addUserAddress: async  (address: Address) => {
         console.log(address)
         return {...address, id:9 }
+    },
+
+    editUserAddress: async (newAddressData: Address) => {
+        return true
+    },
+
+    getUserAddress: async (addressid: number) => {
+        let address: Address = {
+            id: addressid,
+            street: 'Rua lalala',
+            number: `${addressid}00`,
+            cep: '9999999',
+            city: 'cidade teste',
+            neighborhood: 'Bairro Testando',
+            state: 'PA',
+            complement: "ali na esquina"
+        }
+        return address
     }
 })
