@@ -121,6 +121,10 @@ export const UseApi = (tenantSlug: string) =>({
         return true
     },
 
+    deleteUserAddress: async (addressid: number) =>{
+        return true
+    },
+
     getUserAddress: async (addressid: number) => {
         let address: Address = {
             id: addressid,
