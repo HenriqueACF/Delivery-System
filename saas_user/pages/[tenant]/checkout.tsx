@@ -23,6 +23,7 @@ const Checkout = (data: Props) =>{
     const {tenant, setTenant, shippingAddress, shippingPrice} = useAppContext()
     const formater = useFormatter()
     const router = useRouter()
+    const api = UseApi(data.tenant.slug)
 
     // product control
     const [cart, setCart] = useState<CartItem[]>(data.cart)
@@ -65,8 +66,21 @@ const Checkout = (data: Props) =>{
         if(data.user) setUser(data.user)
     }, [])
 
-    const handleFinish = () => {
-        console.log('cabou...')
+    const handleFinish = async () => {
+        if(shippingAddress){
+            const order = await api.setOrder(
+                shippingAddress,
+                paymentType,
+                paymentChange,
+                cupom,
+                data.cart
+            )
+            if(order){
+                router.push(`/${data.tenant.slug}/order/${order.id}`)
+            } else {
+                alert('Ocorreu um erro, tente novamente!')
+            }
+        }
     }
 
     return (

@@ -4,7 +4,8 @@ import { Tenant } from "../types/Tenant"
 import { User } from "../types/User";
 import { CartItem } from '../types/CartItem';
 import {Address} from "../types/Address";
-import {returnStatement} from "@babel/types";
+import {Order} from "../types/Order";
+
 
 const TemporaryProduct: Product = {
     id:3,
@@ -13,6 +14,34 @@ const TemporaryProduct: Product = {
     name:'Texas Burger',
     price: 25.50,
     description: '2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa e Pão brioche artesanal.'
+}
+
+const TEMPORARYorder: Order = {
+    id: 123,
+    status: 'preparing',
+    orderDate: '2023-05-28',
+    userid: '123',
+    shippingAddress: {
+        id: 2,
+        street: 'Rua 1',
+        number: '200',
+        cep: '777933400',
+        city: 'Cidade',
+        neighborhood: 'Bairro',
+        state: 'PA',
+        complement: 'complemento'
+    },
+    shippingPrice: 9.14,
+    paymentType: 'card',
+    cupom: 'ABC',
+    cupomDiscount: 14.3,
+    products: [
+        {product: {...TemporaryProduct, id: 1}, qt: 1},
+        {product: {...TemporaryProduct, id: 2}, qt: 2},
+        {product: {...TemporaryProduct, id: 3}, qt: 3},
+    ],
+    subtotal: 204,
+    total: 198.84
 }
 
 export const UseApi = (tenantSlug: string) =>({
@@ -137,5 +166,15 @@ export const UseApi = (tenantSlug: string) =>({
             complement: "ali na esquina"
         }
         return address
+    },
+
+    setOrder: async (
+        address: Address,
+        paymentType: 'money' | 'card',
+        paymentChange: number,
+        cupom: string,
+        cart: CartItem[]
+    ) => {
+        return TEMPORARYorder
     }
 })
