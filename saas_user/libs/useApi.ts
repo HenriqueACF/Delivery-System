@@ -66,7 +66,7 @@ export const UseApi = (tenantSlug: string) =>({
             break;
 
             default: return false;
-        }     
+        }
     },
 
     getAllProducts: async() => {
@@ -89,7 +89,7 @@ export const UseApi = (tenantSlug: string) =>({
 
     authorizeToken: async (token: string): Promise<User | false> => {
         if(!token) return false
-        
+
         return {
             name: 'Henrique',
             email: 'dev_henrique.assis@proton.me'
@@ -175,6 +175,10 @@ export const UseApi = (tenantSlug: string) =>({
         cupom: string,
         cart: CartItem[]
     ) => {
+        return TEMPORARYorder
+    },
+
+    getOrder: async(orderid: number)=>{
         return TEMPORARYorder
     }
 })
