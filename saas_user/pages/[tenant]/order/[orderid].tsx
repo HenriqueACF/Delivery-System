@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { UseApi } from "../../../libs/useApi";
@@ -10,9 +10,7 @@ import { User } from "../../../types/User";
 import { useAuthContext } from "../../../contexts/auth";
 import { Header } from "../../../components/Header";
 import { InputField } from "../../../components/InputField";
-import { Button } from "../../../components/Button";
 import { useFormatter } from "../../../libs/useFormatter";
-import { CartItem } from "../../../types/CartItem";
 import { useRouter } from "next/router";
 import { CartProductItem } from "../../../components/CartProductItem/Index";
 import {ButtonWithIcon} from "../../../components/ButtonWithIcon";
@@ -31,6 +29,38 @@ const OrderId = (data: Props) =>{
         if(data.user) setUser(data.user)
     }, [])
 
+    //RECARREGA A TELA PARA ATUALIZAR O STATUS
+    useEffect(()=>{
+        if(data.order.status !== 'delivered'){
+            setTimeout(()=>{
+                router.reload()
+            }, 60000)// 60s
+        }
+    }, [])
+
+    const orderStatusList = {
+        preparing:{
+            label:'Preparando',
+            longLabel: 'Preparando o seu pedido...',
+            backgroundColor: '#FEFAE6',
+            fontColor: '#D4BC34',
+            pct: 25
+        },
+        sent:{
+            label:'Enviado',
+            longLabel: 'Enviando o seu pedido!',
+            backgroundColor: '#F1F3F8',
+            fontColor: '#758CBD',
+            pct: 75
+        },
+        delivered:{
+            label:'Entregue',
+            longLabel: 'Pedido entregue',
+            backgroundColor: '#F1F8F6',
+            fontColor: '#6AB70A',
+            pct: 100
+        }
+    }
 
     return (
         <div className={styles.container}>
@@ -44,6 +74,58 @@ const OrderId = (data: Props) =>{
                 title={`Pedido #${data.order.id}`}
             />
 
+            {data.order.status !== 'delivered' &&
+                <div
+                    className={styles.statusArea}
+                    style={{backgroundColor: orderStatusList[data.order.status].backgroundColor}}
+                >
+                    <div
+                        className={styles.statusLongLabel}
+                        style={{color: orderStatusList[data.order.status].fontColor}}
+                    >
+                        {orderStatusList[data.order.status].longLabel}
+                    </div>
+                    <div className={styles.statusPct}>
+                        <div
+                            className={styles.statusPctBar}
+                            style={{
+                                width: `${orderStatusList[data.order.status].pct}%`,
+                                backgroundColor: orderStatusList[data.order.status].fontColor
+                            }}
+                        ></div>
+                    </div>
+                    <div className={styles.statusMsg}>
+                        Aguardando mudança de status...
+                    </div>
+                </div>
+            }
+
+            <div className={styles.orderInfoArea}>
+                <div className={styles.orderInfoStatus} style={{backgroundColor:orderStatusList[data.order.status].backgroundColor}}>
+                    {orderStatusList[data.order.status].label}
+                </div>
+
+                <div className={styles.orderInfoQt}>
+                    {data.order.products.length} {data.order.products.length === 1 ? 'Item' : 'Itens'}
+                </div>
+
+                <div className={styles.orderInfoDate}>
+                    {formater.formatDate(data.order.orderDate)}
+                </div>
+            </div>
+
+            <div className={styles.productList}>
+                {data.order.products.map((cartItem, index)=>(
+                    <CartProductItem
+                        key={index}
+                        color={data.tenant.mainColor}
+                        quantity={cartItem.qt}
+                        product={cartItem.product}
+                        onChange={()=>{} }
+                        noEdit
+                    />
+                ))}
+            </div>
 
             <div className={styles.infoGroup}>
 
@@ -124,22 +206,6 @@ const OrderId = (data: Props) =>{
 
             </div>
 
-            <div className={styles.productquantity}>
-                {data.order.products.length} {data.order.products.length === 1 ? 'Item' : 'Itens'}
-            </div>
-
-            <div className={styles.productList}>
-                {data.order.products.map((cartItem, index)=>(
-                    <CartProductItem
-                        key={index}
-                        color={data.tenant.mainColor}
-                        quantity={cartItem.qt}
-                        product={cartItem.product}
-                        onChange={()=>{} }
-                        noEdit
-                    />
-                ))}
-            </div>
 
             <div className={styles.resumeArea}>
                 <div className={styles.resumeItem}>
