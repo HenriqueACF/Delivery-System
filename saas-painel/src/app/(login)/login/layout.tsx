@@ -24,7 +24,7 @@ const Layout = ({children}) => {
                         alignItems:'center'
                     }}>
                         <Typography component="h3" variant="h3">
-                            SaaS Delivery
+                            SaaS Painel
                         </Typography>
 
                         <Typography component="h5" variant="h5">
