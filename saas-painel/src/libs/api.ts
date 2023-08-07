@@ -1,9 +1,9 @@
 export const api = {
 
-    login: async (email: string, password: string): Promise<{error: string, token?: string}> => {
+    login: async (email: string, password: string): Promise<{ error: string, token?: string }> => {
         return new Promise(resolve => {
-            setTimeout(()=>{
-                if(email !== 'henrique@teste.com'){
+            setTimeout(() => {
+                if (email !== 'henrique@teste.com') {
                     resolve({
                         error: 'E-mail ou Senha invalidos'
                     })
@@ -16,9 +16,16 @@ export const api = {
             }, 1000)
         })
     },
-    forgotPassword: async (email: string)=> {
-        return new Promise(resolve =>{
-            setTimeout(()=>{
+    forgotPassword: async (email: string): Promise<{ error: string }> => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve({error: ''})
+            }, 1000)
+        })
+    },
+    redefinePassword: async (password: string, token: string): Promise<{ error: string }> => {
+        return new Promise(resolve => {
+            setTimeout(() => {
                 resolve({error: ''})
             }, 1000)
         })
