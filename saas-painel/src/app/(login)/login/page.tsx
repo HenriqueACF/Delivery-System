@@ -59,7 +59,7 @@ const Page = () => {
                         onChange={e => setEmailField(e.target.value)}
                         value={emailField}
                         disabled={loading}
-                        required
+                        // required
                     />
                     <TextField
                         label="Digite a sua Senha"
@@ -72,7 +72,7 @@ const Page = () => {
                         onChange={e => setPasswordField(e.target.value)}
                         value={passwordField}
                         disabled={loading}
-                        required
+                        // required
                     />
                     <Button
                         type="submit"
@@ -88,12 +88,12 @@ const Page = () => {
                             sx={{
                                 mt: 3
                             }}
-                        >Error!</Alert>
+                        >{error}</Alert>
                     }
 
                     <Box sx={{ mt:3 }}>
                         <MuiLink
-                            href="/login/forgor"
+                            href="/login/forgot"
                             variant="body2"
                             component={Link}
                         >Esqueceu a sua senha?</MuiLink>
