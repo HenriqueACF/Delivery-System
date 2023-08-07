@@ -15,5 +15,12 @@ export const api = {
                 }
             }, 1000)
         })
+    },
+    forgotPassword: async (email: string)=> {
+        return new Promise(resolve =>{
+            setTimeout(()=>{
+                resolve({error: ''})
+            }, 1000)
+        })
     }
 }
