@@ -18,7 +18,9 @@ const Layout = ({children}) => {
         <html lang="pt-br">
         <body style={{margin: 0}}>
         <Header/>
-        <Container commponent="section" maxWidth="lg">
+        <Container commponent="section" maxWidth="lg" sx={{
+            pt: 10
+        }}>
             {children}
         </Container>
         </body>
